@@ -8,9 +8,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/style/style.css">
-<script>
-    document.getElementById("registration").submit();
-</script>
 </head>
 <body>
     <div id="formDivRegister">
@@ -34,7 +31,13 @@
               
               <input type="text" placeholder="интереси" name="regint" id="regint" style="width: 50%;
               margin-top : 2%" required th:field="*{regint}" class="form-control"><br/>
-        <button onclick="userReg()" style="width: 50%;
+
+<div>
+    <input type="radio" id="org" name="org" value="org">
+    <label for="org">Аз съм организация</label>
+  </div>
+  <button type="submit" style="width: 50%;
+  margin-top : 5%">Регистрация</button>
     <div>
     </div>
 </body>
