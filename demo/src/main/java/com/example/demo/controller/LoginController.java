@@ -18,6 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
     private final LoginService loginService;
+    @GetMapping("/main")
+    public String main(){
+        return "main";
+    }
 
     @GetMapping("/login")
     public String login(@Valid LoginRequest loginRequest, Model model) {
@@ -28,9 +32,9 @@ public class LoginController {
     @PostMapping("submit")
     public ModelAndView accountRegistration(@Valid LoginRequest loginRequest, BindingResult result){
         if (result.hasErrors()) {
-            return new ModelAndView("beginning");
+            return new ModelAndView("redirect:/login");
         }try {
-           
+
         } catch (Exception e) {
             return new ModelAndView("beginning")
                     .addObject("errorMessage" , e.getMessage());

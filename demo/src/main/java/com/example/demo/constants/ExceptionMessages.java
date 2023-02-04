@@ -29,4 +29,6 @@ public class ExceptionMessages {
 
     public static final String accNotFound = "Account not found with email ";
 
+    public static final String userEmailAlreadyExistMessage = "There is already a registered student with email ";
+
 }
