@@ -1,6 +1,9 @@
 html{
-    background: rgb(0,29,36);
-background: linear-gradient(90deg, rgba(0,29,36,1) 0%, rgba(16,121,9,1) 95%);
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+body{
+    background: linear-gradient(90deg, rgba(0,29,36,1) 0%, rgba(16,121,9,1) 95%);
 }
 input[type="radio"] {
     display: inline-block;
@@ -54,8 +57,73 @@ input{
     left: 20vw;
     top: 45vw;
 }
-stuLogin{
+#stuLogin{
     position: absolute;
     left: 20vw;
     top: 45vw;
+}
+#options{
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    top: 20vh;
+    right: 10vw;
+    width: 40vw;
+    height: 40vh;
+    border-radius: 15px;
+}
+#login{
+    position: inherit;
+    top:20vh;
+    left:5vw;
+}
+#register{
+    position: inherit;
+    top:20vh;
+    left:20vw;
+}
+#image{
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    right: 25vw;
+    top: 10vh;
+}
+#image img{
+    border-radius: 15px;
+}
+#loginForm{
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    top: 20vh;
+    right: 10vw;
+    width: 40vw;
+    height: 40vh;
+    border-radius: 15px;
+}
+#formDivRegisterOrg{
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    top: 20vh;
+    right: 10vw;
+    width: 40vw;
+    height: 70vh;
+    margin-top: 2vh;
+    border-radius: 15px;
+}
+#formDivRegisterStu{
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    top: 20vh;
+    right: 10vw;
+    width: 40vw;
+    height: 70vh;
+    margin-top: 2vh;
+    border-radius: 15px;
 }

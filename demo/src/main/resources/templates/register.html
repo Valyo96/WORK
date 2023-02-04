@@ -3,42 +3,235 @@
 <head>
   <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/style/style.css">
-</head>
-<body>
-    <div id="formDivRegister">
-        <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
-          
-            <div class="container">
+  <script>
+    function checkOrg(){
+    var checked = document.getElementById("typeOrg").checked;
+    if(!checked){
+        document.getElementById("formDivRegisterOrg").style.display = "block";
+        document.getElementById("formDivRegisterStu").style.display = "none";
+        document.getElementById("orfanization").style.display = "block";
+        document.getElementById("student").style.display = "none";
+        const inputFile1 = document.getElementById("avatar");
+        inputFile1.addEventListener("change", function() {
+  const file = inputFile1.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = function() {
+    const base64 = reader.result;
+    console.log(base64);
+    document.getElementById("avatarb64").innerHTML = base64;
+  };
+  
+  reader.readAsDataURL(file);
+    });
+    }
+    else{
+        document.getElementById("formDivRegisterStu").style.display = "block";
+        document.getElementById("formDivRegisterOrg").style.display = "none";
+        document.getElementById("organization").style.display = "none";
+        document.getElementById("student").style.display = "block";
+        const inputFile2 = document.getElementById("avatars");
+        inputFile2.addEventListener("change", function() {
+  const file = inputFile2.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = function() {
+    const base64 = reader.result;
+    console.log(base64);
+    document.getElementById("avatarsb64").innerHTML = base64;
+  };
+  
+  reader.readAsDataURL(file);
+    });
+    }
+    }
+        function checkOrg(){
+    var checked = document.getElementById("typeOrg").checked;
+    if(!checked){
+        document.getElementById("formDivRegisterOrg").style.display = "block";
+        document.getElementById("formDivRegisterStu").style.display = "none";
+        document.getElementById("orfanization").style.display = "block";
+        document.getElementById("student").style.display = "none";
+        const inputFile1 = document.getElementById("avatar");
+        inputFile1.addEventListener("change", function() {
+  const file = inputFile1.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = function() {
+    const base64 = reader.result;
+    console.log(base64);
+    document.getElementById("avatarb64").innerHTML = base64;
+  };
+  
+  reader.readAsDataURL(file);
+    });
+    }
+    else{
+        document.getElementById("formDivRegisterStu").style.display = "block";
+        document.getElementById("formDivRegisterOrg").style.display = "none";
+        document.getElementById("organization").style.display = "none";
+        document.getElementById("student").style.display = "block";
+        const inputFile2 = document.getElementById("avatars");
+        inputFile2.addEventListener("change", function() {
+  const file = inputFile2.files[0];
+  const reader = new FileReader();
+  
+  reader.onload = function() {
+    const base64 = reader.result;
+    console.log(base64);
+    document.getElementById("avatarsb64").innerHTML = base64;
+  };
+  
+  reader.readAsDataURL(file);
+    });
+    }
+    }
+  </script>
+    <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #2196F3;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    #formDivRegisterStu{
+        display: none;
+    }
+    </style>
+    </head>
+    <body>
+        <h1 style="text-align:left; top:7.5vh;">Направихте правилният избор</h1>
+    <div id="description"><h4>Ще получите възможността да изберете<br/> от най-вълнуващите предложения за<br/>
+    събития, стажове, обменни програми<br /> и много други!
+    </h4></div>
+    <div id="formDivRegisterStu">
+        <form id="registrations" action="#" th:action="@{/submit}" method="post"  th:object="${stu}">
+            
+            <input type="text" placeholder="Име" id="name" name="name" style="width: 50%;
+            margin-top : 2%" required th:field="*{name}" class="form-control"><br/>
+
+            <input type="text" placeholder="Фамилия" id="fname" name="fname" style="width: 50%;
+            margin-top : 2%" required th:field="*{fname}" class="form-control"><br/>
+
               <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;
               margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
-          
-              <input type="hidden" id="hashpsw" name="hashpsw" style="width: 50%;
-              margin-top : 2%" th:field="*{password}" class="form-control"><br/>
-    
-            <input type="password" placeholder="Парола" id="regpsw" name="psw" style="width: 50%;
-            margin-top : 2%" required class="form-control"><br/>
-    
-              <input type="password" placeholder="Повтори парола" id="regpswCheck" name="pswCheck" style="width: 50%;
-              margin-top : 2%" required class="form-control"><br/>
-    
-              <input type="number" placeholder="възраст" name="age" id="age" style="width: 50%;
-              margin-top : 2%" required th:field="*{age}" class="form-control"><br/>
-              
-              <input type="text" placeholder="интереси" name="regint" id="regint" style="width: 50%;
-              margin-top : 2%" required th:field="*{regint}" class="form-control"><br/>
 
-<div>
-    <input type="radio" id="org" name="org" value="org">
-    <label for="org">Аз съм организация</label>
-  </div>
-  <button type="submit" style="width: 50%;
-  margin-top : 5%">Регистрация</button>
+              <input type="password" placeholder="Парола" id="password" name="password" style="width: 50%;
+              margin-top : 2%" required th:field="*{password}" class="form-control"><br/>
+
+              <input type="number" placeholder="възраст" name="age" id="age" style="width: 50%;
+              margin-top : 2%" required th:field="*{age}" class="form-control"><br/>  
+
+              <input type="file" name="avatars" id="avatars" style="width: 50%;
+              margin-top : 2%" required class="form-control"><br/>
+
+            <input type="hidden" name="avatarsb64" id="avatarsb64" style="width: 50%;
+            margin-top : 2%"  th:field="*{image}" class="form-control"><br/>
+
+            <button type="submit" style="width: 50%;
+            margin-top : 5%">Регистрация</button>
+              </form>
     <div>
+    <span id="student" style="display: none;">Ученик</span><br />
+    <label class="switch">
+        <input onchange="checkOrg();" id="typeOrg" type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+      <span id="organization"></span>
+    </div>
+    </div>
+
+    <div id="formDivRegisterOrg">
+        <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
+            
+            <input type="text" placeholder="Име" id="name" name="name" style="width: 50%;
+        margin-top : 2%" required th:field="*{name}" class="form-control"><br/>
+
+        <input type="text" placeholder="email" id="email" name="email" style="width: 50%;
+        margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
+
+          <input type="password" placeholder="Парола" id="password" name="password" style="width: 50%;
+          margin-top : 2%" th:field="*{password}" class="form-control"><br/>
+
+            <input type="text" placeholder="местоположение" id="location" name="location" style="width: 50%;
+            margin-top : 2%" th:field="*{location}" class="form-control"><br/>
+            
+            <input type="date" name="founded" id="founded" style="width: 50%;
+          margin-top : 2%" required th:field="*{founded}" class="form-control"><br/>
+            <button type="submit" style="width: 50%;
+            margin-top : 5%">Регистрация</button>
+              </form>
+    <div>
+    <span id="student">организация</span><br />
+    <label class="switch">
+        <input onchange="checkOrg();" id="typeOrg" type="checkbox" unchecked>
+        <span class="slider round"></span>
+      </label>
+      <span id="organization"></span>
+    </div>
     </div>
 </body>
 </html>
+
+
+
+
+
