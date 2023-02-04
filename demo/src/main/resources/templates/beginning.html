@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="../staticstyle/style.css">
   <script>
     function register(){
       document.getElementById("formDivLogin").style.display = "none";
@@ -48,7 +48,7 @@
 <div id="description"><h2>Възможности, изживявания и запознанства<br/> на една ръка растояние.<br/>
 Регистрирате се и изберете следващото си приключение!
 </h2></div>
-<img id="welcomeImage" src="style/students.jpeg">
+<img id="welcomeImage" src="../staticstyle/students.jpeg">
 <div id="formDivLogin">
 <form action="#" th:action="@{/submit}" method="post"  th:object="${logger}">
   
