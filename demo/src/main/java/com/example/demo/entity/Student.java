@@ -44,8 +44,6 @@ public class Student {
     @Min(value = 14 , message = ageValidMessage)
     private Integer age;
 
-    private HashSet<String> prefLocation;
-
     private String image;
 
     private final boolean isUser = true;
