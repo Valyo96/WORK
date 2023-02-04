@@ -34,20 +34,8 @@
         //encrypt password 
         var pass = document.getElementById("regpsw").value;
         var hash = CryptoJS.MD5(pass);
-        var regData = [{ "email": regEmail, "password": hash, "age": age}];
-        //send registration information
-        url = "https://api.github.com/users/"+username+"/repos";
-        $.ajax({
-    type: "POST",
-    url: url,
-    dataType:"json",
-    data: {regData: JSON.stringify(markers)},
-    success: function(response){
-        //if request if made successfully then the response represent the data
-
-        console.log(response);
-    }
-  });
+        document.getElementById("hashpsw").innerHTML = hash;
+        document.getElementById("registration").submit();
       }
     }
     function hideMsg(){
@@ -79,17 +67,20 @@
   bottom: -30%">Регистрация</button>
   </div>
   <div id="formDivRegister" style="display: none;">
-    <form action="#" th:action="@{/submit}" method="post"  th:object="${org}">
+    <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
       
         <div class="container">
           <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;
           margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
       
-          <input type="password" placeholder="Парола" id="regpsw" name="psw" style="width: 50%;
-          margin-top : 2%" required th:field="*{password}" class="form-control"><br/>
+          <input type="hidden" id="hashpsw" name="hashpsw" style="width: 50%;
+          margin-top : 2%" th:field="*{password}" class="form-control"><br/>
+
+        <input type="password" placeholder="Парола" id="regpsw" name="psw" style="width: 50%;
+        margin-top : 2%" required class="form-control"><br/>
 
           <input type="password" placeholder="Повтори парола" id="regpswCheck" name="pswCheck" style="width: 50%;
-          margin-top : 2%" required th:field="*{passwordCheck}" class="form-control"><br/>
+          margin-top : 2%" required class="form-control"><br/>
 
           <input type="number" placeholder="възраст" name="age" id="age" style="width: 50%;
           margin-top : 2%" required th:field="*{age}" class="form-control"><br/>
