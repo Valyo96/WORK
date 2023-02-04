@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@
 </h2></div>
 <img id="welcomeImage" src="style/students.jpeg">
 <div id="formDivLogin">
-<form action="submit" method="post">
+<form action="#" th:action="@{/submit}" method="post"  th:object="${org}">
   
     <div class="container">
       <input type="text" placeholder="Email" id="email" name="email" style="width: 50%;
@@ -79,7 +79,7 @@
   bottom: -30%">Регистрация</button>
   </div>
   <div id="formDivRegister" style="display: none;">
-    <form method="post">
+    <form action="#" th:action="@{/submit}" method="post"  th:object="${org}">
       
         <div class="container">
           <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;

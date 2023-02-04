@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
+import com.example.demo.constants.PostType;
 import com.example.demo.entity.Post;
-import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repositories.PostRepository;
 import jakarta.persistence.NoResultException;
@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +47,10 @@ public class PostService {
         Post post = findById(postId);
         postRepository.delete(post);
     }
+    public Post findByPostType(PostType label){
+        return postRepository.findByType(label).orElseThrow(() -> new NotFoundException(postTypeNotFoundMessage));
+    }
+
 
     public void deleteAllPostsConnectedToOrganisationById(Long organisationId){
 

@@ -34,9 +34,6 @@ public class BusinessOrganisationService {
         return businessRepository.findByName(name).orElseThrow(() -> new NotFoundException(nameNotFoundExceptionMessage));
     }
 
-    public BusinessOrganisation findByPostType(PostType label){
-        return businessRepository.findByType(label).orElseThrow(() -> new NotFoundException(postTypeNotFoundMessage));
-    }
 
     public BusinessOrganisation createOrganisation(BusinessOrganisation organisation){
         if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))){
