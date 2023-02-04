@@ -135,7 +135,6 @@ input{
     position: relative;
     width: 15vw;
     height: 15vw;
-    background-color: red;
     top: 2vw;
     left:2vw;
 }
@@ -143,7 +142,6 @@ input{
     position: absolute;
     width: 45vw;
     height: 25vw;
-    background-color: green;
     top: 2vw;
     left: 20vw;
 }
@@ -151,7 +149,6 @@ input{
     position: inherit;
     width: 45vw;
     height: 10vh;
-    background-color: orange;
 }
 #personal{
     position: inherit;
@@ -235,4 +232,8 @@ input{
     top: 2vh;
     width: 25vw;
     font-family: 'Roboto', sans-serif;
+}
+#contentType{
+    display: block;
+    background: red;
 }
