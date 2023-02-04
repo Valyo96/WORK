@@ -34,6 +34,10 @@ public class Post {
     private Integer prefAge;
 
     private String location;
-
-    private Integer interestCounter;
+    private int interest;
+    @PreUpdate
+    @PrePersist
+    private void onUpdate() {
+        interest++;
+    }
 }
