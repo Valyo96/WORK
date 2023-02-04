@@ -37,9 +37,6 @@ public class BusinessOrganisation {
     private String email;
     @Password
     private String password;
-    @OneToMany
-    private List<Post> posts;
-
     private LocalDate founded;
 
     private String location;
