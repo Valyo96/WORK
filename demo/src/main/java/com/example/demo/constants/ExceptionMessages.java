@@ -26,4 +26,7 @@ public class ExceptionMessages {
 
     public static final String emptyResult = "No result";
 
+
+    public static final String accNotFound = "Account not found with email ";
+
 }
