@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import com.example.demo.annotations.EmailExtended;
+import com.example.demo.annotations.Password;
+import com.example.demo.exceptions.DateInputException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +12,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import static com.example.demo.constants.ExceptionMessages.*;
+import static com.example.demo.constants.Regex.stringRegexPattern;
 
 @Data
 @Entity
@@ -20,13 +27,16 @@ public class BusinessOrganisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
-    @NotNull
-    @Pattern(regexp = "")
+    @NotBlank(message = notBlankMessage)
+    @Pattern(regexp = stringRegexPattern , message = letterValidationMessage)
     @Column(name = "name")
     private String name;
-
+    @EmailExtended
+    @NotBlank(message = notBlankMessage)
     private String email;
+    @Password
+    private String password;
+
     private LocalDate founded;
 
     private String location;
@@ -35,4 +45,13 @@ public class BusinessOrganisation {
     @Column(name = "is_user")
     private final boolean userType = false;
 
+
+    public void setFounded(LocalDate founded) {
+        if(founded.isBefore(LocalDate.now())){
+            this.founded = founded;
+        } else {
+            throw new DateInputException(dateValidMessage);
+        }
+
+    }
 }
