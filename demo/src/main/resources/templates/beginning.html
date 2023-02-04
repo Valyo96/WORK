@@ -16,7 +16,7 @@
       document.getElementById("formDivLogin").style.display = "block";
       document.getElementById("formDivRegister").style.display = "none";
       document.getElementById("loginFon").submit();
-      var loginStatus = [[${loginAuth}]];
+      var loginStatus = ${loginAuth};
 if(!loginStatus){
     //organization
     location.href="orgMain.html";
