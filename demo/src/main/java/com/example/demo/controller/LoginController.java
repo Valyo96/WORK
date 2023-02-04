@@ -25,12 +25,13 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(@Valid LoginRequest loginRequest, Model model) {
+        model.addAttribute("loignAuth",loginService.checkLogin(loginRequest));
         model.addAttribute("logger", loginRequest);
         return "beginning";
     }
 
     @PostMapping("submit")
-    public ModelAndView accountRegistration(@Valid LoginRequest loginRequest, BindingResult result){
+    public ModelAndView accountRegistration(@Valid LoginRequest loginRequest, BindingResult result,Model model){
         if (result.hasErrors()) {
             return new ModelAndView("redirect:/login");
         }try {

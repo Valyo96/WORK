@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="../static/style/style.css">
   <script>
     function profileData(){
         document.getElementById("profile").style.display = "block";
+        document.getElementById("filter").style.display = "none";
     }
     function showFilters(){
         document.getElementById("filter").style.display = "grid";
+        document.getElementById("profile").style.display = "none";
     }
     function saveProfileEdit(){
+      document.getElementById("filter").style.display = "none";
         document.getElementById("profile").style.display = "none";
     }
     function applyFilter(){
@@ -24,8 +28,11 @@
 </head>
 <body>
 <div id="navBar">
-   <img id="search" src="style/search.png" onclick="showFilters()">
-   <img id="glyph" src="style/glyph.png" onclick="profileData()">
+   <img id="search" src="../static/style/search.png" onclick="showFilters()">
+   <img id="glyph" src="../static/style/glyph.png" onclick="profileData()">
+</div>
+<div id="contentType">
+  
 </div>
 <div id="filter">
     <div id="location"></div>
