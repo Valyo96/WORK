@@ -18,7 +18,12 @@ public class ExceptionMessages {
 
     public static final String postTypeNotFoundMessage = "TYPE NOT FOUND";
 
-    public static final String organisationAlreadyExistMessage = "There is already an organisation with name ";
+    public static final String organisationAlreadyExistMessage = "There is already a registered organisation with email ";
 
     public static final String emailOrganisationAlreadyExists = "DUPLICATED EMAIL. Insert another";
+
+    public static final String postAlreadyExistMessage = "There is already duplicated post with name ";
+
+    public static final String emptyResult = "No result";
+
 }

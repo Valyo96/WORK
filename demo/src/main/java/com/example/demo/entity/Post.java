@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class Post {
     private String description;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
     private String location;
 
@@ -59,6 +60,5 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @Column(name = "post_type")
     private PostType type;
-
 
 }

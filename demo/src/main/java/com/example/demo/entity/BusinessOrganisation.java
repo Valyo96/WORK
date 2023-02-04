@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static com.example.demo.constants.ExceptionMessages.*;
 import static com.example.demo.constants.Regex.stringRegexPattern;
@@ -36,6 +37,8 @@ public class BusinessOrganisation {
     private String email;
     @Password
     private String password;
+    @OneToMany
+    private List<Post> posts;
 
     private LocalDate founded;
 

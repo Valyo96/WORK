@@ -34,13 +34,13 @@ public class BusinessOrganisationService {
         return businessRepository.findByName(name).orElseThrow(() -> new NotFoundException(nameNotFoundExceptionMessage));
     }
 
-    public BusinessOrganisation findByType(PostType label){
+    public BusinessOrganisation findByPostType(PostType label){
         return businessRepository.findByType(label).orElseThrow(() -> new NotFoundException(postTypeNotFoundMessage));
     }
 
     public BusinessOrganisation createOrganisation(BusinessOrganisation organisation){
-        if(getAllBusinessOrganisations().stream().anyMatch( b ->b.equals(organisation))){
-            throw new AlreadyExistException(organisationAlreadyExistMessage+organisation.getName());
+        if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))){
+            throw new AlreadyExistException(organisationAlreadyExistMessage+organisation.getEmail());
         }
 
           return   businessRepository.save(organisation);
@@ -53,8 +53,13 @@ public class BusinessOrganisationService {
       return   businessRepository.save(organisation);
     }
 
-    public void deleteOrganisation(Long id){
-        postService.deleteAllPostsConnectedToOrganisationById(id);
-        businessRepository.deleteById(id);
+    public void deleteOrganisation(Long organisationId){
+        postService.deleteAllPostsConnectedToOrganisationById( organisationId);
+        businessRepository.deleteById( organisationId);
+    }
+
+    public void deletePostById(Long organisationId, Long postId){
+        Post post = postService.getAll().stream().filter(p -> p.getOrganisation().getId() == organisationId && p.getId() == postId).findFirst().orElseThrow(() -> new NotFoundException(iDnotFoundExceptionMessage));
+        postService.deletePostById(post.getId());
     }
 }
