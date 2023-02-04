@@ -12,4 +12,13 @@ public class ExceptionMessages {
 
     public static final String passwordValidationMessage = "Invalid password: it should be at least 6 characters long, contain at least one digit, one special symbol, one lowercase letter and one uppercase letter";
 
+    public static final String iDnotFoundExceptionMessage = "ID NOT FOUND";
+
+    public static final String nameNotFoundExceptionMessage = "NAME NOT FOUND";
+
+    public static final String postTypeNotFoundMessage = "TYPE NOT FOUND";
+
+    public static final String organisationAlreadyExistMessage = "There is already an organisation with name ";
+
+    public static final String emailOrganisationAlreadyExists = "DUPLICATED EMAIL. Insert another";
 }

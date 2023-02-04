@@ -38,6 +38,9 @@ public class Post {
     @Column(name = "category")
     private String category;
 
+    @ManyToOne
+    @JoinColumn(name = "organisation_id")
+    private BusinessOrganisation organisation;
     private String description;
 
     @CreationTimestamp
