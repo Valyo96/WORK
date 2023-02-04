@@ -51,4 +51,6 @@ public class Post {
     @Enumerated(EnumType.STRING)
     @Column(name = "post_type")
     private PostType type;
+
+
 }
