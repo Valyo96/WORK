@@ -9,6 +9,8 @@ import com.example.demo.repositories.BusinessOrganisationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.demo.constants.ExceptionMessages.*;
@@ -20,6 +22,8 @@ public class BusinessOrganisationService {
     private final BusinessOrganisationRepository businessRepository;
 
     private final PostService postService;
+
+    private final  ApplicationService aService;
 
 
     public List<BusinessOrganisation> getAllBusinessOrganisations(){
@@ -44,7 +48,14 @@ public class BusinessOrganisationService {
     }
 
     public BusinessOrganisation updateOrganisation(BusinessOrganisation organisation){
-        if(getAllBusinessOrganisations().stream().anyMatch(b -> b.getEmail().equals(organisation.getEmail()))){
+        List<BusinessOrganisation> organisations = getAllBusinessOrganisations();
+        List<BusinessOrganisation> org = new ArrayList<>();
+        for(BusinessOrganisation o: organisations){
+            if(!organisation.getEmail().equals(o.getEmail())){
+                org.add(o);
+            }
+        }
+        if(org.stream().anyMatch(o -> o.getEmail().equals(organisation.getEmail()))){
             throw new AlreadyExistException(emailOrganisationAlreadyExists);
         }
       return   businessRepository.save(organisation);
@@ -57,6 +68,22 @@ public class BusinessOrganisationService {
 
     public void deletePostById(Long organisationId, Long postId){
         Post post = postService.getAll().stream().filter(p -> p.getOrganisation().getId() == organisationId && p.getId() == postId).findFirst().orElseThrow(() -> new NotFoundException(iDnotFoundExceptionMessage));
+        aService.deleteAllAppliesConnectedToPostById(postId);
         postService.deletePostById(post.getId());
     }
+
+    public List<Post> findPostByDate(LocalDate startDate , LocalDate endDate){
+        return postService.findByDate(startDate, endDate);
+    }
+
+    public List<Post> getPostsByCategory(String category){
+        return postService.findByCategory(category);
+    }
+
+    public Post findByPostType(PostType label){
+        return postService.findByPostType(label);
+    }
+
+
+
 }
