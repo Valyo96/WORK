@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../static/style/style.css">
+  <script>
+    function register(){
+      document.getElementById("formDivLogin").style.display = "none";
+      document.getElementById("formDivRegister").style.display = "block";
+    }
+    function login(){
+      document.getElementById("formDivLogin").style.display = "block";
+      document.getElementById("formDivRegister").style.display = "none";
+      document.getElementById("loginFon").submit();
+      var loginAuthContainer = document.getElementById("loginAuthContainer");
+var loginAuth = loginAuthContainer.textContent;
+var loginStatus = JSON.parse(loginAuth);
+if(!loginStatus){
+    //organization
+    location.href="orgMain.html";
+}
+else{
+    //students
+    location.href="main.html";
+}
+
+    }
+    function userReg(){
+      var regEmail = document.getElementById("regEmail").value;
+      var regpsw = document.getElementById("regpsw").value;
+      var regpswCheck = document.getElementById("regpswCheck").value;
+      var age = document.getElementById("age").value;
+      var regint = document.getElementById("regint").value;
+      if(regpsw != regpswCheck){
+        document.getElementById("regEmail").value = "";
+        document.getElementById("regpsw").value = "";
+        document.getElementById("regpswCheck").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("regint").value = "";
+        document.getElementById("pswNotMatch").style.display = "block";
+      }
+      else{
+        //encrypt password 
+        var pass = document.getElementById("regpsw").value;
+        var hash = CryptoJS.MD5(pass);
+        document.getElementById("hashpsw").innerHTML = hash;
+        document.getElementById("registration").submit();
+      }
+    }
+    function hideMsg(){
+      document.getElementById("pswNotMatch").style.display = "none";
+    }
+  </script>
+</head>
+<body>
+<h1 style="text-align:center;">Младежки хъб</h1>
+<div id="description"><h2>Възможности, изживявания и запознанства<br/> на една ръка растояние.<br/>
+Регистрирате се и изберете следващото си приключение!
+</h2></div>
+<img id="welcomeImage" src="../static/style/students.jpeg">
+<div id="formDivLogin">
+<form id="loginForm" action="#" th:action="@{/submit}" method="post"  th:object="${logger}">
+  
+    <div class="container">
+      <input type="text" placeholder="Email" id="email" name="email" style="width: 50%;
+      margin-top : 10%" required th:field="*{email}"><br/>
+  
+      <input type="password" placeholder="Парола" id="psw" name="psw" style="width: 50%;
+      margin-top : 10%" required th:field="*{password}"><br/>
+  
+      <button type="submit" style="width: 50%;
+      margin-top : 5%">Вход</button>
+    </div>
+  </form>
+  <button onclick="register()" style="position: relative; width: 50%;
+  bottom: -30%">Регистрация</button>
+  </div>
+  <div id="formDivRegister" style="display: none;">
+    <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
+      
+        <div class="container">
+          <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;
+          margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
+      
+          <input type="hidden" id="hashpsw" name="hashpsw" style="width: 50%;
+          margin-top : 2%" th:field="*{password}" class="form-control"><br/>
+
+        <input type="password" placeholder="Парола" id="regpsw" name="psw" style="width: 50%;
+        margin-top : 2%" required class="form-control"><br/>
+
+          <input type="password" placeholder="Повтори парола" id="regpswCheck" name="pswCheck" style="width: 50%;
+          margin-top : 2%" required class="form-control"><br/>
+
+          <input type="number" placeholder="възраст" name="age" id="age" style="width: 50%;
+          margin-top : 2%" required th:field="*{age}" class="form-control"><br/>
+          
+          <input type="text" placeholder="интереси" name="regint" id="regint" style="width: 50%;
+          margin-top : 2%" required th:field="*{regint}" class="form-control"><br/>
+
+<div>
+  <input type="radio" id="org" name="org" value="org">
+  <label for="org">Аз съм организация</label>
+</div>
+      
+          <button onclick="userReg()" style="width: 50%;
+          margin-top : 2%">Регистрация</button>
+        </div>
+      </form>
+      <button onclick="login()" style="position: relative; width: 50%;
+  bottom: -5%">Вход</button>
+      </div>
+      <div id="pswNotMatch">
+        Паролите не съвпадат<br/>
+        <button onclick="hideMsg()">OK</button>
+      </div>
+      <div th:with="loginAuth=${loginAuth}" id="loginAuthContainer" style="display:none;">[[${loginAuth}]]</div>
+
+</body>
+</html>
