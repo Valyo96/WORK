@@ -8,11 +8,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/style/style.css">
-
 </head>
 <body>
-<h1>Регистрация</h1>
-<button id="login" inbcli>Вход</button>
-<button id="register">Регистрация</button>
+    <div id="formDivRegister">
+        <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
+          
+            <div class="container">
+              <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;
+              margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
+          
+              <input type="hidden" id="hashpsw" name="hashpsw" style="width: 50%;
+              margin-top : 2%" th:field="*{password}" class="form-control"><br/>
+    
+            <input type="password" placeholder="Парола" id="regpsw" name="psw" style="width: 50%;
+            margin-top : 2%" required class="form-control"><br/>
+    
+              <input type="password" placeholder="Повтори парола" id="regpswCheck" name="pswCheck" style="width: 50%;
+              margin-top : 2%" required class="form-control"><br/>
+    
+              <input type="number" placeholder="възраст" name="age" id="age" style="width: 50%;
+              margin-top : 2%" required th:field="*{age}" class="form-control"><br/>
+              
+              <input type="text" placeholder="интереси" name="regint" id="regint" style="width: 50%;
+              margin-top : 2%" required th:field="*{regint}" class="form-control"><br/>
+
+<div>
+    <input type="radio" id="org" name="org" value="org">
+    <label for="org">Аз съм организация</label>
+  </div>
+  <button type="submit" style="width: 50%;
+  margin-top : 5%">Регистрация</button>
+    <div>
+    </div>
 </body>
 </html>
