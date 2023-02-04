@@ -48,6 +48,11 @@ public class Post {
     private String location;
 
     private Integer interestCounter;
+    @PreUpdate
+    @PrePersist
+    private void onUpdate() {
+        interestCounter++;
+    }
     @Enumerated(EnumType.STRING)
     @Column(name = "post_type")
     private PostType type;
