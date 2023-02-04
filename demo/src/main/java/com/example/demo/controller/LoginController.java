@@ -19,26 +19,30 @@ public class LoginController {
 
     private final LoginService loginService;
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
     @GetMapping("/login")
-    public String login(@Valid LoginRequest loginRequest, Model model) {
-        model.addAttribute("loignAuth",loginService.checkLogin(loginRequest));
-        model.addAttribute("logger", loginRequest);
-        return "beginning";
+    public String login(Model model) {
+        model.addAttribute("logger", new LoginRequest());
+        return "login";
     }
 
     @PostMapping("submit")
-    public ModelAndView accountRegistration(@Valid LoginRequest loginRequest, BindingResult result,Model model){
+    public ModelAndView accountRegistration(@Valid LoginRequest loginRequest, BindingResult result, Model model) {
+        model.addAttribute("logger", loginRequest);
+        model.addAttribute("loignAuth", loginService.checkLogin(loginRequest));
+
         if (result.hasErrors()) {
             return new ModelAndView("beginning");
-        }try {
-           
+        }
+        try {
+
         } catch (Exception e) {
             return new ModelAndView("beginning")
-                    .addObject("errorMessage" , e.getMessage());
+                    .addObject("errorMessage", e.getMessage());
         }
         return new ModelAndView("main");
     }
-
-
-
 }
