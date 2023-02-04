@@ -78,6 +78,13 @@
   <button onclick="register()" style="position: relative; width: 50%;
   bottom: -30%">Регистрация</button>
   </div>
+<td th:switch="${loginAuth}">
+    <span th:case="false">NO COURSES YET!</span>
+    <span th:case="'1'" th:text="${teacher.courses[0]}"></span>
+    <div th:case="*">
+        <div th:each="course:${teacher.courses}" th:text="${course}"/>
+    </div>
+</td>
   <div id="formDivRegister" style="display: none;">
     <form action="#" th:action="@{/submit}" method="post"  th:object="${org}">
       
