@@ -1,0 +1,71 @@
+html{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+body {
+    background-color: gainsboro;
+}
+#welcomeImage{
+    position: absolute;
+    border-radius: 5%;
+    right: 10vw;
+}
+#formDivLogin{
+    display: block;
+    position: absolute;
+    padding: 2vh;
+    text-align: center;
+    top: 10vw;
+    right: 15vw;
+    width: 25vw;
+    height: 25vw;
+    display: block;
+    border-radius: 5%;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.5);
+}
+input{
+    height: 5vh;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.5);
+}
+::placeholder{
+    opacity: 1;
+    color: black;
+    font-size: 15px;
+}
+#formDivRegister{
+    display: none;
+    position: absolute;
+    padding: 2vh;
+    text-align: center;
+    top: 10vw;
+    right: 15vw;
+    width: 25vw;
+    height: 25vw;
+    display: block;
+    border-radius: 5%;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.5);
+}
+#description{
+    position: absolute;
+    left: 5vw;
+    width: 30vw;
+    position: absolute;
+    text-align: center;
+}
+#pswNotMatch{
+    display: none;
+    position: absolute;
+    right: 22.5vw;
+    top: 30vh;
+    text-align: center;
+    line-height: 5vh;
+    width: 10vw;
+    height: 10vw;
+    background-color: rgba(190, 11, 11, 0.9);
+    border-radius: 5px;
+}
