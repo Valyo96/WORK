@@ -33,6 +33,7 @@
       }
       else{
         //encrypt password 
+        var radios = document.getElementById('org').value;
         var pass = document.getElementById("regpsw").value;
         var hash = CryptoJS.MD5(pass);
         var regForm = document.createElement('regForm');
