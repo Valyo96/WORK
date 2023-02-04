@@ -14,6 +14,13 @@ public class Categories {
 
     private final PostService postService;
 
+    public HashSet<String>getLocations(){
+        HashSet<String> locationList = new HashSet<>();
+        for (String category : getAllLocations()) {
+            locationList.add(category);
+        }
+        return locationList;
+    }
     public HashSet<String> getCategories() {
         HashSet<String> categoryList = new HashSet<>();
         for (String category : getAllCategories()) {
@@ -29,6 +36,15 @@ public class Categories {
            categories.add(post.getCategory());
         }
         return categories;
+    }
+
+    private List<String> getAllLocations(){
+        List<Post> posts = postService.getAll();
+        List<String> locations = new ArrayList<>();
+        for (Post post : posts) {
+            locations.add(post.getLocation());
+        }
+        return locations;
     }
 
 }

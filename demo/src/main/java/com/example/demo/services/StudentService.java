@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static com.example.demo.constants.ExceptionMessages.userEmailAlreadyExistMessage;
@@ -21,6 +22,8 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     private final PostService postService;
+
+    private final Categories categoriesService;
 
     public List<Student> getAll(){
         return studentRepository.findAll();
@@ -55,6 +58,17 @@ public class StudentService {
 
     public Post findByPostType(PostType label){
         return postService.findByPostType(label);
+    }
+
+    public List<Post> findPostByLocation(String location) {
+        HashSet<String> locations = categoriesService.getLocations();
+        List<Post> matchingPosts = new ArrayList<>();
+        for (String loc : locations) {
+            if (loc.equalsIgnoreCase(location)) {
+                matchingPosts.addAll(postService.findByLocation(loc));
+            }
+        }
+        return matchingPosts;
     }
 
 

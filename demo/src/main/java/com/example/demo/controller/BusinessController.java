@@ -20,13 +20,13 @@ public class BusinessController {
     private final BusinessOrganisationService organisationService;
     private final StudentService studentService;
 
-    @GetMapping("/login")
+    @GetMapping("/llogin")
     public String login(BusinessOrganisation businessOrganisation, Student student, Model model){
         model.addAttribute("org",businessOrganisation);
         model.addAttribute("student",student);
         return "beginning";
     }
-    @PostMapping("submit")
+    @PostMapping("submitt")
     public ModelAndView accountRegistration(@Valid BusinessOrganisation businessOrganisation, @Valid Student student,
                                             BindingResult result){
         if (result.hasErrors()) {
