@@ -17,7 +17,9 @@
       document.getElementById("formDivLogin").style.display = "block";
       document.getElementById("formDivRegister").style.display = "none";
       document.getElementById("loginFon").submit();
-      var loginStatus = ${loginAuth};
+      var loginAuthContainer = document.getElementById("loginAuthContainer");
+var loginAuth = loginAuthContainer.textContent;
+var loginStatus = JSON.parse(loginAuth);
 if(!loginStatus){
     //organization
     location.href="orgMain.html";
@@ -116,5 +118,7 @@ else{
         Паролите не съвпадат<br/>
         <button onclick="hideMsg()">OK</button>
       </div>
+      <div th:with="loginAuth=${loginAuth}" id="loginAuthContainer" style="display:none;">[[${loginAuth}]]</div>
+
 </body>
 </html>
