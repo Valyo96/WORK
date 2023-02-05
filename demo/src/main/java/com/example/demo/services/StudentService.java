@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.demo.constants.ExceptionMessages.userEmailAlreadyExistMessage;
 
@@ -60,9 +61,9 @@ public class StudentService {
         return postService.findByPostType(label);
     }
 
-    public List<Post> findPostByLocation(String location) {
+    public List<Optional<List<Post>>> findPostByLocation(String location) {
         HashSet<String> locations = categoriesService.getLocations();
-        List<Post> matchingPosts = new ArrayList<>();
+        List<Optional<List<Post>>> matchingPosts = new ArrayList<>();
         for (String loc : locations) {
             if (loc.equalsIgnoreCase(location)) {
                 matchingPosts.add(postService.findByLocation(location));
