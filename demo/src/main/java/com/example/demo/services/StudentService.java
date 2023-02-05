@@ -27,12 +27,15 @@ public class StudentService {
     private final PostService postService;
 
     private final Categories categoriesService;
+    private final BusinessOrganisationRepository bRepository;
 
     private final BusinessOrganisationRepository bRepository;
 
     public List<Student> getAll() {
         return studentRepository.findAll();
     }
+
+
 
     public Student createStudent(Student student) {
         if (getAll().stream().anyMatch(s -> s.getEmail().equals(student.getEmail())) &&
@@ -41,6 +44,7 @@ public class StudentService {
         }
         return studentRepository.save(student);
     }
+
 
     public void updateStudent(Student student) {
         List<Student> newStudents = new ArrayList();
@@ -79,6 +83,12 @@ public class StudentService {
         }
         return matchingPosts;
     }
-
+    public Student createStudent(Student student) {
+        if (getAll().stream().anyMatch(s -> s.getEmail().equals(student.getEmail())) &&
+                bRepository.findAll().stream().anyMatch(b -> b.getEmail().equals(student.getEmail()))) {
+            throw new AlreadyExistException(emailAlreadyRegistered + student.getEmail());
+        }
+        return studentRepository.save(student);
+    }
 
 }

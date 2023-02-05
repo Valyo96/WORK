@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.demo.constants.ExceptionMessages.*;
 
@@ -25,7 +26,11 @@ public class BusinessOrganisationService {
 
     private final  ApplicationService aService;
 
+private final StudentService studentService;
+
+
     private final StudentService studentService;
+
 
 
     public List<BusinessOrganisation> getAllBusinessOrganisations(){
@@ -41,6 +46,7 @@ public class BusinessOrganisationService {
     }
 
 
+
     public BusinessOrganisation createOrganisation(BusinessOrganisation organisation){
         if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))&&
         studentService.getAll().stream().anyMatch(s-> s.getEmail().equals(organisation.getEmail()))){
@@ -49,6 +55,7 @@ public class BusinessOrganisationService {
 
           return   businessRepository.save(organisation);
     }
+
 
     public BusinessOrganisation updateOrganisation(BusinessOrganisation organisation){
         List<BusinessOrganisation> organisations = getAllBusinessOrganisations();
@@ -88,5 +95,20 @@ public class BusinessOrganisationService {
     }
 
 
+    public BusinessOrganisation createOrganisation(BusinessOrganisation organisation){
+        if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))&&
+                studentService.getAll().stream().anyMatch(s-> s.getEmail().equals(organisation.getEmail()))){
+            throw new AlreadyExistException(emailAlreadyRegistered+organisation.getEmail());
+        }
 
+        return   businessRepository.save(organisation);
+    }
+    public List<Post> getOrgPosts(Long orgId) {
+
+        List<Post> posts = postService.getAll().stream()
+                .filter(p -> p.getOrganisation().getId() == orgId)
+                .collect(Collectors.toList());
+        return posts;
+
+    }
 }
