@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../static/style/style.css">
+  <link rel="stylesheet" href="../style/style.css">
   <script>
     function checkOrg(){
     var checked = document.getElementById("typeOrg").checked;
@@ -163,13 +163,13 @@
     събития, стажове, обменни програми<br /> и много други!
     </h4></div>
     <div id="formDivRegisterStu">
-        <form id="registrations" action="#" th:action="@{/submit}" method="post"  th:object="${stu}">
+        <form id="registrations" action="#" th:action="@{/createStudent}" method="post"  th:object="${student}">
             
             <input type="text" placeholder="Име" id="name" name="name" style="width: 50%;
             margin-top : 2%" required th:field="*{name}" class="form-control"><br/>
 
             <input type="text" placeholder="Фамилия" id="fname" name="fname" style="width: 50%;
-            margin-top : 2%" required th:field="*{fname}" class="form-control"><br/>
+            margin-top : 2%" required th:field="*{fName}" class="form-control"><br/>
 
               <input type="text" placeholder="Email" id="regEmail" name="email" style="width: 50%;
               margin-top : 2%" required th:field="*{email}" class="form-control"><br/>
@@ -200,7 +200,7 @@
     </div>
 
     <div id="formDivRegisterOrg">
-        <form id="registration" action="#" th:action="@{/submit}" method="post"  th:object="${org}">
+        <form id="registration" action="#" th:action="@{/createOrganization}" method="post"  th:object="${organization}">
             
             <input type="text" placeholder="Име" id="name" name="name" style="width: 50%;
         margin-top : 2%" required th:field="*{name}" class="form-control"><br/>
