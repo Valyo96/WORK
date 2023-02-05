@@ -29,35 +29,47 @@ public class StudentService {
     private final Categories categoriesService;
     private final BusinessOrganisationRepository bRepository;
 
-    public List<Student> getAll(){
+    private final BusinessOrganisationRepository bRepository;
+
+    public List<Student> getAll() {
         return studentRepository.findAll();
     }
 
 
-    public void updateStudent(Student student){
-        List<Student> newStudents= new ArrayList();
-    List<Student> students = getAll();
-        for (Student nstudent:students) {
-            if (!student.getEmail().equals(nstudent.getEmail())){
+
+    public Student createStudent(Student student) {
+        if (getAll().stream().anyMatch(s -> s.getEmail().equals(student.getEmail())) &&
+                bRepository.findAll().stream().anyMatch(b -> b.getEmail().equals(student.getEmail()))) {
+            throw new AlreadyExistException(emailAlreadyRegistered + student.getEmail());
+        }
+        return studentRepository.save(student);
+    }
+
+
+    public void updateStudent(Student student) {
+        List<Student> newStudents = new ArrayList();
+        List<Student> students = getAll();
+        for (Student nstudent : students) {
+            if (!student.getEmail().equals(nstudent.getEmail())) {
                 newStudents.add(nstudent);
             }
         }
-        if(newStudents.stream().anyMatch(s-> s.getEmail().equals(student.getEmail()))){
-            throw new AlreadyExistException(userEmailAlreadyExistMessage+student.getEmail());
+        if (newStudents.stream().anyMatch(s -> s.getEmail().equals(student.getEmail()))) {
+            throw new AlreadyExistException(userEmailAlreadyExistMessage + student.getEmail());
         }
         studentRepository.save(student);
 
     }
 
-    public List<Post> getPostsByCategory(String category){
-       return postService.findByCategory(category);
+    public List<Post> getPostsByCategory(String category) {
+        return postService.findByCategory(category);
     }
 
-    public List<Post> findPostByDate(LocalDate startDate , LocalDate endDate){
-      return   postService.findByDate(startDate, endDate);
+    public List<Post> findPostByDate(LocalDate startDate, LocalDate endDate) {
+        return postService.findByDate(startDate, endDate);
     }
 
-    public Post findByPostType(PostType label){
+    public Post findByPostType(PostType label) {
         return postService.findByPostType(label);
     }
 
@@ -78,7 +90,5 @@ public class StudentService {
         }
         return studentRepository.save(student);
     }
-
-
 
 }

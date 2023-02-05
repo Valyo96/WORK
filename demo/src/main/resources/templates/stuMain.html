@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
             integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style/style.css">
     <script>
+
+
+   
     function profileData(){
         document.getElementById("profile").style.display = "block";
         document.getElementById("filter").style.display = "none";
@@ -49,9 +53,11 @@
       // Add the post element to the page
       document.getElementById("posts").appendChild(postElement);
     }
+
     
 
     </script>
+
 </head>
 <body>
 <div id="navBar">
@@ -83,7 +89,8 @@
     <button id="completeEdit" onclick="applyFilter()">Търси</button>
 </div>
 <div id="profile">
-    <div id="picture"></div>
+
+    <div id="picture"> <img th:src="@{${image}}"/></div>
     <div id="otherInfo">
         <span id="greeting"></span>
         <span id="labelPer">Лична описание</span>
@@ -95,9 +102,8 @@
                   rows="5" cols="33">
 </textarea><br/>
         <span id="ageSl">възраст</span>
-        <input type="range" id="ageSlider" min="13" max="90" value="50"
-               oninput="this.nextElementSibling.value = this.value">
-        <output id="selAge">50</output>
+
+        <input type="range" id="ageSlider" min="13" max="90" value="50" oninput="this.nextElementSibling.value = this.value"><output id="selAge">50</output>
     </div>
     <button id="completeEdit" onclick="saveProfileEdit()">Запиши</button>
 </div>
