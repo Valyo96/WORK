@@ -33,7 +33,7 @@ public class PostService {
         return posts;
     }
 
-    public Post findByLocation(String location){
+    public Optional<List<Post>> findByLocation(String location){
        Optional<List<Post>> postsByLocation= postRepository.findByLocation(location);
        if(postsByLocation.isEmpty()){
            throw new NotFoundException(currentlyNotFoundPostsByLocation);
