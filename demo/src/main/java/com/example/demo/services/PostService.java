@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.demo.constants.ExceptionMessages.*;
@@ -30,6 +31,16 @@ public class PostService {
     public List<Post> findByCategory(String category){
         List<Post> posts = getAll().stream().filter(p -> p.getCategory().equals(category)).collect(Collectors.toList());
         return posts;
+    }
+
+    public Post findByLocation(String location){
+       Optional<List<Post>> postsByLocation= postRepository.findByLocation(location);
+       if(postsByLocation.isEmpty()){
+           throw new NotFoundException(currentlyNotFoundPostsByLocation);
+       } else {
+        return postsByLocation;
+       }
+
     }
 
     public List<Post> findByDate(LocalDate startDate , LocalDate endDate){

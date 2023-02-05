@@ -31,4 +31,6 @@ public class ExceptionMessages {
 
     public static final String userEmailAlreadyExistMessage = "There is already a registered student with email ";
 
+    public static final String currentlyNotFoundPostsByLocation = "Currently there aren't any activities and posts in this location";
+
 }

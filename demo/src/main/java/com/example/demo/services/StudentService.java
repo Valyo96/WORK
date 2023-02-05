@@ -65,7 +65,7 @@ public class StudentService {
         List<Post> matchingPosts = new ArrayList<>();
         for (String loc : locations) {
             if (loc.equalsIgnoreCase(location)) {
-                matchingPosts.addAll(postService.findByLocation(loc));
+                matchingPosts.add(postService.findByLocation(location));
             }
         }
         return matchingPosts;
