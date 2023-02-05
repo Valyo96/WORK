@@ -25,6 +25,8 @@ public class BusinessOrganisationService {
 
     private final  ApplicationService aService;
 
+    private final StudentService studentService;
+
 
     public List<BusinessOrganisation> getAllBusinessOrganisations(){
         return businessRepository.findAll();
@@ -40,8 +42,9 @@ public class BusinessOrganisationService {
 
 
     public BusinessOrganisation createOrganisation(BusinessOrganisation organisation){
-        if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))){
-            throw new AlreadyExistException(organisationAlreadyExistMessage+organisation.getEmail());
+        if(getAllBusinessOrganisations().stream().anyMatch( b ->b.getEmail().equals(organisation.getEmail()))&&
+        studentService.getAll().stream().anyMatch(s-> s.getEmail().equals(organisation.getEmail()))){
+            throw new AlreadyExistException(emailAlreadyRegistered+organisation.getEmail());
         }
 
           return   businessRepository.save(organisation);

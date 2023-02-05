@@ -20,6 +20,8 @@ public class ExceptionMessages {
 
     public static final String organisationAlreadyExistMessage = "There is already a registered organisation with email ";
 
+    public static final String emailAlreadyRegistered = "There is already a registration with email ";
+
     public static final String emailOrganisationAlreadyExists = "DUPLICATED EMAIL. Insert another";
 
     public static final String postAlreadyExistMessage = "There is already duplicated post with name ";
