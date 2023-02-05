@@ -4,6 +4,7 @@ import com.example.demo.constants.PostType;
 import com.example.demo.entity.Post;
 import com.example.demo.entity.Student;
 import com.example.demo.exceptions.AlreadyExistException;
+import com.example.demo.repositories.BusinessOrganisationRepository;
 import com.example.demo.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.demo.constants.ExceptionMessages.emailAlreadyRegistered;
 import static com.example.demo.constants.ExceptionMessages.userEmailAlreadyExistMessage;
 
 @Service
@@ -25,14 +27,12 @@ public class StudentService {
     private final PostService postService;
 
     private final Categories categoriesService;
+    private final BusinessOrganisationRepository bRepository;
 
     public List<Student> getAll(){
         return studentRepository.findAll();
     }
 
-    public Student createStudent(Student student){
-       return studentRepository.save(student);
-    }
 
     public void updateStudent(Student student){
         List<Student> newStudents= new ArrayList();
@@ -71,7 +71,13 @@ public class StudentService {
         }
         return matchingPosts;
     }
-
+    public Student createStudent(Student student) {
+        if (getAll().stream().anyMatch(s -> s.getEmail().equals(student.getEmail())) &&
+                bRepository.findAll().stream().anyMatch(b -> b.getEmail().equals(student.getEmail()))) {
+            throw new AlreadyExistException(emailAlreadyRegistered + student.getEmail());
+        }
+        return studentRepository.save(student);
+    }
 
 
 

@@ -19,11 +19,8 @@ public class BusinessController {
 
     private final BusinessOrganisationService organisationService;
     private final StudentService studentService;
+    
 
-    @GetMapping("/orgmain")
-    public String showOrganisation(){
-        return "orgMain";
-    }
 
 
 
